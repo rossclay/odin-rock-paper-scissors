@@ -25,3 +25,4 @@ function getComputerChoice() {
     return computerChoice
 };
 let computerSelection = getComputerChoice();
+let playerSelection
