@@ -8,7 +8,6 @@
 // If the choices match, there is a tie
 // Inform the user of the result
 // If the result is a tie, there must be rematch
-// NOTE TO SELF: consider adjusting all variables inside the "playRound" function from "game" to "round"
 
 // Randomly generate computer's choice
 function getComputerChoice() {
@@ -24,7 +23,6 @@ function getComputerChoice() {
     // console.log(computerChoice)
     return computerChoice
 };
-let computerSelection = getComputerChoice();
 
 // capitalize function to allow for case insensitive input
 function capitalize(string) {
@@ -40,70 +38,56 @@ function getPlayerChoice() {
     let playerChoice = capitalize(prompt('Please choose either rock, paper, or scissors.'))
     return playerChoice
 }
-// default parameters for troubleshooting
-let playerSelection = 'Rock';
-// let gameStatus
 
 // determine a winner
-function getGameStatus() {
+function getRoundStatus(playerSelection, computerSelection) {
+    // losing scenarios
     if (computerSelection === 'Rock' && playerSelection === 'Scissors') {
-        let gameStatus = 'Lose'
-        console.log(gameMessage)
-        return gameStatus
+        let roundStatus = 'Lose'
+        return roundStatus
     }
     else if (computerSelection === 'Paper' && playerSelection === 'Rock') {
-        let gameStatus = 'Lose'
-        console.log(gameMessage)
-        return gameStatus
+        let roundStatus = 'Lose'
+        return roundStatus
     }
     else if (computerSelection === 'Scissors' && playerSelection === 'Paper') {
-        let gameStatus = 'Lose'
-        console.log(gameMessage)
-        return gameStatus
+        let roundStatus = 'Lose'
+        return roundStatus
     }
     // winning scenarios
     else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
-        let gameStatus = 'Win'
-        console.log(gameMessage)
-        return gameStatus
+        let roundStatus = 'Win'
+        return roundStatus
     }
     else if (playerSelection === 'Paper' && computerSelection === 'Rock') {
-        let gameStatus = 'Win'
-        console.log(gameMessage)
-        return gameStatus
+        let roundStatus = 'Win'
+        return roundStatus
     }
     else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
-        let gameStatus = 'Win'
-        console.log(gameMessage)
-        return gameStatus
+        let roundStatus = 'Win'
+        return roundStatus
     }
     // tie
     else if (computerSelection === playerSelection) {
-        let gameStatus = 'Tied'
-        gameMessage = gameMessage.concat(' Try again.')
-        console.log(gameMessage)
+        let roundStatus = 'Tied'
+        return roundStatus
     }
-    return gameStatus
 }
 
-function playRound(playerSelection, computerSelection) {
-    let gameMessage = `You ${gameStatus}! You chose ${playerSelection}, but the computer chose ${computerSelection}.`
-    let gameStatus = getGameStatus(playerSelection, computerSelection)
-    // losing scenarios
-    return gameStatus
+function playRound(playerSelection = getPlayerChoice(), computerSelection = getComputerChoice()) {
+    let playRoundStatus = getRoundStatus(playerSelection, computerSelection)
+    let gameMessage = `You ${playRoundStatus}! You chose ${playerSelection}, but the computer chose ${computerSelection}.`
+    console.log(gameMessage)
+    return playRoundStatus
 }
 
-// play 5 rounds
+// play a game (which is five rounds)
 function playGame() {
-
     let wins = 0
     let losses = 0
     let ties = 0
-    let recordMessage = `Your record is ${wins}-${losses}-${ties}.`
     for (let i = 0; i < 5; i++) {
-        getPlayerChoice()
-        getComputerChoice()
-        playRound(playerSelection, computerSelection)
+        let gameStatus = playRound()
         // keep score
         if (gameStatus === 'Win') {
             wins++
@@ -113,9 +97,13 @@ function playGame() {
         } else if (gameStatus === 'Tied') {
             ties++
         }
-        // update score with a message
-        i++
-        return recordMessage
+        let recordMessage = `Your record is ${wins}-${losses}-${ties}.`
+        console.log(recordMessage)
     }
-
+    if (wins < losses) {
+        console.log('The computer has defeated you.')
+    }
+    else if (wins > losses) {
+        console.log('You have conquered the computer!')
+    }
 }
