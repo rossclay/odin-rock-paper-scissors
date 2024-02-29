@@ -23,6 +23,13 @@ function getComputerChoice() {
     // console.log(computerChoice)
     return computerChoice
 };
+// Determine player choice
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playerSelection = button.id
+    })
+})
 
 // determine a winner
 function getRoundStatus(playerSelection, computerSelection) {
