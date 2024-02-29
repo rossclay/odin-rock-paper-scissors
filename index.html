@@ -4,12 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock, Paper, Scissors</title>
+    <title>Fire, Grass, Water</title>
+    <link rel="stylesheet" href="style.css">
+    <link type="image/png" sizes="16x16" rel="icon" href="./img/icons8-pokeball-16.png">
 </head>
 <script type="text/javascript" src="script.js"></script>
 
 <body>
-    <h1>Inspect Elements to play in the console. Web page not yet supported.</h1>
+    <div class="title"> Fire, Grass, Water</div>
+    <div class="card-section">
+        <div class="card">
+            <div>
+                <img class="pokemon" src="./img/ani_bw_004.gif" alt="Charmander">
+            </div>
+            <button class="fire-button">
+                <img src='./img/fire.png' alt="Fire">
+                <div>Fire</div>
+            </button>
+        </div>
+        <div class="card">
+            <div>
+                <img class="pokemon" src="./img/ani_bw_001.gif" alt="Bulbasaur">
+            </div>
+            <button class="grass-button">
+                <img src='./img/grass.png' alt="Grass">
+                <div>Grass</div>
+            </button>
+        </div>
+        <div class="card">
+            <div>
+                <img class="pokemon" src="./img/ani_bw_007.gif" alt="Squirtle">
+            </div>
+            <button class="water-button">
+                <img src='./img/water.png' alt="Water">
+                <div>Water</div>
+            </button>
+        </div>
+    </div>
+    <div class="game-box">Click one of the elemental buttons to play against the computer, who will choose another one
+        at random.</div>
+    <div class="footer"> Sprites sourced from <a href="https://www.pokencyclopedia.info/" title="Pokencyclopedia">
+            Pokencyclopedia. </a>
+        Elemental icons sourced from <a href="https://msikma.github.io/pokesprite/" title="pokesprite"> pokesprite.
+        </a>
+        Pokémon ©1995-2024 Nintendo, GAME FREAK inc. & Creatures Inc. Some rights reserved.</div>
 </body>
 
 </html>

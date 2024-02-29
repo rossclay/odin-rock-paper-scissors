@@ -1,0 +1,54 @@
+img {
+    max-width: 50%;
+    height: auto;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+
+.card-section {
+    margin: 5%;
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+}
+
+.card {
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
+
+.pokemon {
+    min-width: 75%;
+    min-height: auto;
+}
+
+.game-box {
+    display: flex;
+    justify-content: center;
+    border-style: dashed;
+    padding: 5%;
+}
+
+.footer {
+    display: flex;
+    min-height: 72px;
+    align-items: center;
+    background: #eee;
+    gap: 0.2em;
+    justify-content: center;
+    justify-self: flex-end;
+    margin-top: 80px
+}

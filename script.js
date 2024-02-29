@@ -1,99 +1,78 @@
-// When the user inputs a case insensitive string choosing either rock, paper, or scissors
-// The computer should randomly choose either rock, paper, or scissors
+// When the user clicks either the fire, water, or grass button
+// The computer should randomly choose either fire, water, or grass
 // The user's choice should be compared against the computer's
-// A winner will be determined based on the following rules
-// Rock beats Scissors
-// Paper beats Rock
-// Scissors beats paper
+// A winner will be determined based on the following rules:
+// Fire beats Grass
+// Water beats Fire
+// Grass beats Water
 // If the choices match, there is a tie
 // Inform the user of the result
 // If the result is a tie, there must be rematch
-// NOTE TO SELF: consider adjusting all variables inside the "playRound" function from "game" to "round"
 
 // Randomly generate computer's choice
 function getComputerChoice() {
     let computerChoice
     let randomnNumber = Math.floor(Math.random() * 3) + 1;
     if (randomnNumber === 1) {
-        computerChoice = 'Rock'
+        computerChoice = 'Fire'
     }
     else if (randomnNumber === 2) {
-        computerChoice = 'Paper'
+        computerChoice = 'Water'
     }
-    else computerChoice = 'Scissors'
+    else computerChoice = 'Grass'
     // console.log(computerChoice)
     return computerChoice
 };
-let computerSelection = getComputerChoice();
-
-// capitalize function to allow for case insensitive input
-function capitalize(string) {
-    let firstLetter = string.slice(0, 1);
-    firstLetter = firstLetter.toUpperCase()
-    let restOfString = string.slice(1);
-    restOfString = restOfString.toLowerCase()
-    return firstLetter + restOfString;
-}
-
-// player inputs case insensitive selection
-function getPlayerChoice() {
-    let playerChoice = capitalize(prompt('Please choose either rock, paper, or scissors.'))
-    return playerChoice
-}
-let playerSelection = getPlayerChoice();
 
 // determine a winner
-function playRound(computerSelection, playerSelection) {
-    let gameMessage = `You ${gameStatus}! You chose ${playerSelection}, but the computer chose ${computerSelection}.`
-    let gameStatus
+function getRoundStatus(playerSelection, computerSelection) {
     // losing scenarios
-    if (computerSelection === 'Rock' && playerSelection === 'Scissors') {
-        gameStatus = 'Lose'
-        console.log(gameMessage)
-        return gameStatus
+    if (computerSelection === 'Fire' && playerSelection === 'Grass') {
+        let roundStatus = 'Lose'
+        return roundStatus
     }
-    else if (computerSelection === 'Paper' && playerSelection === 'Rock') {
-        gameStatus = 'Lose'
-        console.log(gameMessage)
-        return gameStatus
+    else if (computerSelection === 'Water' && playerSelection === 'Fire') {
+        let roundStatus = 'Lose'
+        return roundStatus
     }
-    else if (computerSelection === 'Scissors' && playerSelection === 'Paper') {
-        gameStatus = 'Lose'
-        console.log(gameMessage)
-        return gameStatus
+    else if (computerSelection === 'Grass' && playerSelection === 'Water') {
+        let roundStatus = 'Lose'
+        return roundStatus
     }
     // winning scenarios
-    else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
-        gameStatus = 'Win'
-        console.log(gameMessage)
-        return gameStatus
+    else if (playerSelection === 'Fire' && computerSelection === 'Grass') {
+        let roundStatus = 'Win'
+        return roundStatus
     }
-    else if (playerSelection === 'Paper' && computerSelection === 'Rock') {
-        gameStatus = 'Win'
-        console.log(gameMessage)
-        return gameStatus
+    else if (playerSelection === 'Water' && computerSelection === 'Fire') {
+        let roundStatus = 'Win'
+        return roundStatus
     }
-    else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
-        gameStatus = 'Win'
-        console.log(gameMessage)
-        return gameStatus
+    else if (playerSelection === 'Grass' && computerSelection === 'Water') {
+        let roundStatus = 'Win'
+        return roundStatus
     }
     // tie
     else if (computerSelection === playerSelection) {
-        gamestatus = 'Tied'
-        gameMessage = gameMessage.concat(' Try again.')
-        console.log(gameMessage)
-    } return gameStatus
+        let roundStatus = 'Tied'
+        return roundStatus
+    }
 }
 
-// play 5 rounds
+function playRound(playerSelection = getPlayerChoice(), computerSelection = getComputerChoice()) {
+    let playRoundStatus = getRoundStatus(playerSelection, computerSelection)
+    let gameMessage = `You ${playRoundStatus}! You chose ${playerSelection}, but the computer chose ${computerSelection}.`
+    console.log(gameMessage)
+    return playRoundStatus
+}
+
+// play a game (which is five rounds)
 function playGame() {
-    let i
     let wins = 0
     let losses = 0
     let ties = 0
-    while (i < 5) {
-        playRound()
+    for (let i = 0; i < 5; i++) {
+        let gameStatus = playRound()
         // keep score
         if (gameStatus === 'Win') {
             wins++
@@ -103,7 +82,13 @@ function playGame() {
         } else if (gameStatus === 'Tied') {
             ties++
         }
-        // update score with a message
-        i++
+        let recordMessage = `Your record is ${wins}-${losses}-${ties}.`
+        console.log(recordMessage)
+    }
+    if (wins < losses) {
+        console.log('The computer has defeated you.')
+    }
+    else if (wins > losses) {
+        console.log('You have conquered the computer!')
     }
 }
