@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Pokemon GB';
+    src: url('./fonts/PokemonGb-RAeo.ttf')
+}
+
+* {
+    font-family: Pokemon GB, sans-serif
+}
+
 img {
     max-width: 50%;
     height: auto;
@@ -11,10 +20,20 @@ body {
 
 .title {
     font-size: 36px;
-    font-weight: 900;
+    font-family: 'Pokemon Solid', sans-serif;
     display: flex;
     justify-content: center;
     margin-bottom: 5%;
+}
+
+.game-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url('./img/bg-forest.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 .card-section {
@@ -22,6 +41,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 5%;
+
 }
 
 .card {
@@ -38,17 +58,40 @@ body {
 .game-box {
     display: flex;
     justify-content: center;
-    border-style: dashed;
-    padding: 5%;
+    background-color: #eee;
+    border-style: solid;
+    padding: 10px;
+    /* padding-bottom: 10px;
+    padding-left: 10px; */
+    margin-right: 10px;
+    margin-left: 10px;
+    font-family: Pokemon GB;
+    font-size: 12px;
+    max-width: fit-content;
+    align-self: center;
+
+}
+
+.score-box {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: #eee;
+    border-style: solid;
+    max-width: fit-content;
+    align-self: center;
 }
 
 .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 52px;
     display: flex;
-    min-height: 72px;
-    align-items: center;
-    background: #eee;
     gap: 0.2em;
+    align-items: center;
     justify-content: center;
-    justify-self: flex-end;
-    margin-top: 80px
+    background: #eee;
+    font-size: 8px;
 }

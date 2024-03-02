@@ -9,14 +9,15 @@
 // Inform the user of the result
 // If the result is a tie, there must be rematch
 
+
 // Randomly generate computer's choice
 function getComputerChoice() {
     let computerChoice
-    let randomnNumber = Math.floor(Math.random() * 3) + 1;
-    if (randomnNumber === 1) {
+    let randomNumber = Math.floor(Math.random() * 3) + 1;
+    if (randomNumber === 1) {
         computerChoice = 'Fire'
     }
-    else if (randomnNumber === 2) {
+    else if (randomNumber === 2) {
         computerChoice = 'Water'
     }
     else computerChoice = 'Grass'
@@ -24,12 +25,13 @@ function getComputerChoice() {
     return computerChoice
 };
 // Determine player choice
-const buttons = document.querySelectorAll('button');
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        playerSelection = button.id
-    })
-})
+let gameBox = document.querySelector('.game-box')
+let playerSelection
+let buttons = document.querySelectorAll(".btn");
+buttons.forEach((button) => button.addEventListener('click', () => {
+    playerSelection = button.id
+    return playRound(playerSelection)
+}))
 
 // determine a winner
 function getRoundStatus(playerSelection, computerSelection) {
@@ -66,11 +68,29 @@ function getRoundStatus(playerSelection, computerSelection) {
     }
 }
 
-function playRound(playerSelection = getPlayerChoice(), computerSelection = getComputerChoice()) {
+function playRound(playerSelection = playerSelection, computerSelection = getComputerChoice()) {
     let playRoundStatus = getRoundStatus(playerSelection, computerSelection)
     let gameMessage = `You ${playRoundStatus}! You chose ${playerSelection}, but the computer chose ${computerSelection}.`
-    console.log(gameMessage)
+    gameBox.textContent = ''
+    gameBox.textContent += gameMessage
     return playRoundStatus
+}
+
+function keepScore() {
+    let wins = 0
+    let losses = 0
+    let ties = 0
+    let gameStatus = playRound()
+    // keep score
+    if (gameStatus === 'Win') {
+        wins++
+    }
+    else if (gameStatus === 'Lose') {
+        losses++
+    } else if (gameStatus === 'Tied') {
+        ties++
+    }
+    let recordMessage = `Your record is ${win}-${losses}-${ties}.`
 }
 
 // play a game (which is five rounds)
@@ -78,24 +98,26 @@ function playGame() {
     let wins = 0
     let losses = 0
     let ties = 0
-    for (let i = 0; i < 5; i++) {
-        let gameStatus = playRound()
-        // keep score
-        if (gameStatus === 'Win') {
-            wins++
-        }
-        else if (gameStatus === 'Lose') {
-            losses++
-        } else if (gameStatus === 'Tied') {
-            ties++
-        }
-        let recordMessage = `Your record is ${wins}-${losses}-${ties}.`
-        console.log(recordMessage)
+
+    let gameStatus = playRound()
+    // keep score
+    if (gameStatus === 'Win') {
+        wins++
     }
+    else if (gameStatus === 'Lose') {
+        losses++
+    } else if (gameStatus === 'Tied') {
+        ties++
+    }
+    let recordMessage = `Your record is ${win}-${losses}-${ties}.`
+    gameBox.textContent += recordMessage
+
     if (wins < losses) {
-        console.log('The computer has defeated you.')
+        gameBox.textContent += 'The computer has defeated you.'
     }
     else if (wins > losses) {
-        console.log('You have conquered the computer!')
+
+        gameBox.textContent += 'You have conquered the computer!'
+
     }
 }
