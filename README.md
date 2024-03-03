@@ -1,7 +1,5 @@
 # odin-rock-paper-scissors
-Currently played in the console. Inspect elements to play.
-Type in the console playRound() to play a single round of rock-paper-scissors, or type playGame() to play best of 5. 
-You must type in your selection by hand. 
+Now featuring a Gameboy themed UI! CSS is still a work in progress, but the game itself is fully operational.
 Live site: https://rossclay.github.io/odin-rock-paper-scissors/
 
-User interface + rebrand under construction in rps-ui branch
+

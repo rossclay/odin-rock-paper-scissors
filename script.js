@@ -27,11 +27,13 @@ function getComputerChoice() {
 // Determine player choice
 let gameBox = document.querySelector('.game-box')
 let playerSelection
+let computerSelection
 let buttons = document.querySelectorAll(".btn");
 buttons.forEach((button) => button.addEventListener('click', () => {
     playerSelection = button.id
-    keepScore(playerSelection)
-    return playRound(playerSelection)
+    computerSelection = getComputerChoice()
+    keepScore(playerSelection, computerSelection)
+    return playRound(playerSelection, computerSelection)
 }))
 
 // determine a winner
@@ -69,7 +71,7 @@ function getRoundStatus(playerSelection, computerSelection) {
     }
 }
 
-function playRound(playerSelection = playerSelection, computerSelection = getComputerChoice()) {
+function playRound(playerSelection = playerSelection, computerSelection = computerSelection) {
     let playRoundStatus = getRoundStatus(playerSelection, computerSelection)
     let gameMessage = `You ${playRoundStatus}! You chose ${playerSelection}, but the computer chose ${computerSelection}.`
     gameBox.textContent = ''
@@ -78,11 +80,13 @@ function playRound(playerSelection = playerSelection, computerSelection = getCom
 }
 
 let scoreBox = document.querySelector('.score-box')
-function keepScore(playerSelection = playerSelection) {
-    let wins = 0
-    let losses = 0
-    let ties = 0
-    let gameStatus = playRound(playerSelection)
+let wins = 0
+let losses = 0
+let ties = 0
+let gamesPlayed = wins + losses + ties
+function keepScore(playerSelection = playerSelection, computerSelection = computerSelection) {
+
+    let gameStatus = playRound(playerSelection, computerSelection)
     // keep score
     if (gameStatus === 'Win') {
         wins++
