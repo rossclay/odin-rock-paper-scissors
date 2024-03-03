@@ -7,6 +7,7 @@
     font-family: Pokemon GB, sans-serif
 }
 
+
 .title {
     font-size: 2vw;
     font-family: 'Pokemon Solid', sans-serif;
@@ -29,7 +30,6 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: none;
     gap: 2em;
 }
 
@@ -37,6 +37,7 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-grow: 3;
     background-image: url('./img/gameboy-icon.png');
     background-repeat: no-repeat;
     background-position: center;
@@ -47,7 +48,6 @@ img {
     margin: 5%;
     display: flex;
     justify-content: center;
-    /* gap: 1%; */
     background-image: url('./img/bg-forest.jpg');
     background-repeat: no-repeat;
     background-position: center;
@@ -115,4 +115,5 @@ img {
     justify-content: center;
     background: #eee;
     font-size: 8px;
+    flex-wrap: nowrap;
 }

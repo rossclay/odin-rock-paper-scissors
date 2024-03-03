@@ -83,7 +83,7 @@ let scoreBox = document.querySelector('.score-box')
 let wins = 0
 let losses = 0
 let ties = 0
-let gamesPlayed = wins + losses + ties
+
 function keepScore(playerSelection = playerSelection, computerSelection = computerSelection) {
 
     let gameStatus = playRound(playerSelection, computerSelection)
