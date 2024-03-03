@@ -30,6 +30,7 @@ let playerSelection
 let buttons = document.querySelectorAll(".btn");
 buttons.forEach((button) => button.addEventListener('click', () => {
     playerSelection = button.id
+    keepScore(playerSelection)
     return playRound(playerSelection)
 }))
 
@@ -76,11 +77,12 @@ function playRound(playerSelection = playerSelection, computerSelection = getCom
     return playRoundStatus
 }
 
-function keepScore() {
+let scoreBox = document.querySelector('.score-box')
+function keepScore(playerSelection = playerSelection) {
     let wins = 0
     let losses = 0
     let ties = 0
-    let gameStatus = playRound()
+    let gameStatus = playRound(playerSelection)
     // keep score
     if (gameStatus === 'Win') {
         wins++
@@ -90,34 +92,8 @@ function keepScore() {
     } else if (gameStatus === 'Tied') {
         ties++
     }
-    let recordMessage = `Your record is ${win}-${losses}-${ties}.`
-}
-
-// play a game (which is five rounds)
-function playGame() {
-    let wins = 0
-    let losses = 0
-    let ties = 0
-
-    let gameStatus = playRound()
-    // keep score
-    if (gameStatus === 'Win') {
-        wins++
-    }
-    else if (gameStatus === 'Lose') {
-        losses++
-    } else if (gameStatus === 'Tied') {
-        ties++
-    }
-    let recordMessage = `Your record is ${win}-${losses}-${ties}.`
-    gameBox.textContent += recordMessage
-
-    if (wins < losses) {
-        gameBox.textContent += 'The computer has defeated you.'
-    }
-    else if (wins > losses) {
-
-        gameBox.textContent += 'You have conquered the computer!'
-
-    }
+    let recordMessage = `Your record is ${wins}-${losses}-${ties}.`
+    scoreBox.textContent = 'Running Score: '
+    scoreBox.textContent += recordMessage
+    return recordMessage
 }
