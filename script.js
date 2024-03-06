@@ -101,3 +101,28 @@ function keepScore(playerSelection = playerSelection, computerSelection = comput
     scoreBox.textContent += recordMessage
     return recordMessage
 }
+
+// shiny odds 1 in 10, for now. (1 in 4096) OR (1 in 455?) 
+function getShinyStatus(pokemon) {
+    let pokemonId = pokemon.getAttribute('id')
+    let pokemonIsShiny = Math.floor(Math.random() * 10);
+    if (pokemonIsShiny === 1 && pokemonId === 'bulbasaur') {
+        pokemon.setAttribute('isShiny', '')
+        pokemon.src = './img/ani_bw-S_001.gif'
+    }
+    if (pokemonIsShiny === 1 && pokemonId === 'charmander') {
+        pokemon.setAttribute('isShiny', '')
+        pokemon.src = './img/ani_bw-S_004.gif'
+    }
+    if (pokemonIsShiny === 1 && pokemonId === 'squirtle') {
+        pokemon.setAttribute('isShiny', '')
+        pokemon.src = './img/ani_bw-S_007.gif'
+    }
+}
+
+let allPokemon = document.querySelectorAll('.pokemon')
+allPokemon.forEach((pokemon) => pokemon.addEventListener('load', getShinyStatus(pokemon)))
+
+// // evolution
+// evoBtn = document.querySelector('.evo-btn')
+// evotBtn.addEventListener('click',()=>)
