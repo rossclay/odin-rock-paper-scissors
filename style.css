@@ -7,9 +7,12 @@
     font-family: Pokemon GB, sans-serif
 }
 
+body {
+    min-height: 100vh;
+}
 
 .title {
-    font-size: 2vw;
+    font-size: 4vw;
     font-family: 'Pokemon Solid', sans-serif;
     display: flex;
     justify-content: center;
